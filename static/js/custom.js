@@ -73,7 +73,7 @@ $(document).ready(function () {
         escapedMessage = marked.parse(escapeHtml(message)); // 有可能不是markdown格式，都用escapeHtml处理后再转换，防止非markdown格式html紊乱页面
       }
     }
-    lastResponseElement.append(escapedMessage);
+    lastResponseElement.append(escapedMessage).addClass("mdui-typo");
     chatWindow.scrollTop(chatWindow.prop('scrollHeight'));
     hljs.initHighlighting();
   }
