@@ -407,10 +407,19 @@ $(document).ready(function () {
     e.preventDefault();  // 阻止默认事件
   });
 
-  // 禁止键盘F12键
-  document.addEventListener('keydown', function (e) {
-    if (e.key == 'F12') {
-      e.preventDefault(); // 如果按下键F12,阻止事件
-    }
-  });
+  // 定义一个函数，根据用户设备的亮暗模式偏好，选择不同的css文件
+  function switchCSS() {
+    let prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let cssFile = prefersDarkMode ? 'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/dark.min.css' : 'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/default.min.css';
+
+    let link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = cssFile;
+
+    document.head.appendChild(link);
+  }
+  window.addEventListener('load', switchCSS);
+
+
+
 });
