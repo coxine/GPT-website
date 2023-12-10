@@ -75,6 +75,7 @@ $(document).ready(function () {
     }
     lastResponseElement.append(escapedMessage);
     chatWindow.scrollTop(chatWindow.prop('scrollHeight'));
+    hljs.initHighlighting();
   }
 
   // 添加失败信息到窗口
