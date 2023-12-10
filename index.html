@@ -6,8 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="images/x-icon" href="./static/images/favicon.ico">
-  <link rel="stylesheet" href="./static/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./static/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="./static/css/style.css">
   <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
   <title>神曰</title>
@@ -20,12 +18,6 @@
       <div class="mdui-toolbar">
         <span class="mdui-typo-title">神曰</span>
         <div class="mdui-toolbar-spacer"></div>
-        <button class="mdui-btn mdui-btn-icon dropdown-toggle" mdui-tooltip="{content: '设置'}">
-          <i class="mdui-icon material-icons">settings</i></button>
-        <button class="mdui-btn mdui-btn-icon screenshot" mdui-tooltip="{content: '另存为图片'}">
-          <i class="mdui-icon material-icons">photo_camera</i></button>
-        <button class="mdui-btn mdui-btn-icon delete" mdui-tooltip="{content: '清空会话'}">
-          <i class="mdui-icon material-icons">delete</i></button>
         <a href="https://costg.de" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '瑞治网'}"><i
             class="mdui-icon material-icons">home</i></a>
         <a href="https://res.costg.de" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '瑞治下载站'}""><i class="
@@ -37,47 +29,52 @@
       <div class="answer">
         <div id="chatWindow"></div>
         <div class="function">
-          <div class="others">
-            <div class="left">
-              <div class="settings common dropup">
-                <a class="dropdown-toggle icon-style" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false" title="设置">
-                  <i class="fa fa-cogs fa-lg" aria-hidden="true"></i>
-                </a>
-                <div class="dropdown-menu" style="padding:0;" onclick="event.stopPropagation()">
-                  <div class="settings-common">
-                    <span><i class="fa fa-key fa-lg" aria-hidden="true"></i>&nbsp; OpenAI Key</span>
-                    <input type="text" class="form-control ipt-common api-key" placeholder="可用自己的api key">
+          <div class="mdui-dialog" id="settingDialog">
+            <div class="mdui-dialog-title">设置</div>
+            <div class="mdui-dialog-content">
+              <div onclick="event.stopPropagation()">
+                <div class="setting mdui-m-t-1">
+                  <span><i class="mdui-icon material-icons">vpn_key</i>&nbsp; OpenAI Key</span>
+                  <div class="mdui-textfield mdui-textfield-floating-label">
+                    <label class="mdui-textfield-label">请输入API key</label>
+                    <input class="mdui-textfield-input api-key" />
                   </div>
-                  <div class="settings-common">
-                    <span><i class="fa fa-reddit-alien fa-lg" aria-hidden="true"></i>&nbsp; OpenAI 模型</span>
-                    <select class="form-control ipt-common">
-                      <option>gpt-3.5-turbo</option>
-                    </select>
-                  </div>
-                  <div class="settings-common">
-                    <span><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>&nbsp; 记录对话内容，刷新不会消失</span>
-                    <div class="chck-btn">
-                      <input id="chck-1" type="checkbox">
-                      <label for="chck-1" class="check-trail">
-                        <div class="check-handler"></div>
-                      </label>
-                    </div>
-                  </div>
-                  <div class="settings-common">
-                    <span><i class="fa fa-retweet fa-lg" aria-hidden="true"></i>&nbsp; 开启连续对话，加倍消耗tokens</span>
-                    <div class="chck-btn">
-                      <input id="chck-2" type="checkbox">
-                      <label for="chck-2" class="check-trail">
-                        <div class="check-handler"></div>
-                      </label>
-                    </div>
-                  </div>
+                </div>
+                <div class=" setting mdui-m-t-1">
+                  <span><i class="mdui-icon material-icons">child_care</i>&nbsp; OpenAI 模型</span>
+                  <select class="mdui-select" mdui-select>
+                    <option>gpt-3.5-turbo</option>
+                  </select>
+                </div>
+                <div class="setting mdui-m-t-1">
+                  <span><i class="mdui-icon material-icons">save</i>&nbsp; 记录对话内容，刷新不会消失</span>
+                  <label for="chck-1" class="mdui-switch">
+                    <input type="checkbox" id="chck-1" />
+                    <i class="mdui-switch-icon"></i>
+                  </label>
+
+                </div>
+                <div class="setting mdui-m-t-1">
+                  <span><i class="mdui-icon material-icons">history</i>&nbsp; 开启连续对话，加倍消耗tokens</span>
+                  <label for="chck-2" class="mdui-switch">
+                    <input type="checkbox" id="chck-2" />
+                    <i class="mdui-switch-icon"></i>
+                  </label>
                 </div>
               </div>
             </div>
+            <div class="mdui-dialog-actions">
+              <button class="mdui-btn mdui-ripple" mdui-dialog-confirm>确认</button>
+            </div>
           </div>
           <div class="ipt">
+            <button class="mdui-btn mdui-btn-icon dropdown-toggle" mdui-dialog="{target: '#settingDialog'}"
+              mdui-tooltip="{content: '设置'}">
+              <i class="mdui-icon material-icons">settings</i></button>
+            <button class="mdui-btn mdui-btn-icon screenshot" mdui-tooltip="{content: '另存为图片'}">
+              <i class="mdui-icon material-icons">photo_camera</i></button>
+            <button class="mdui-btn mdui-btn-icon delete" mdui-tooltip="{content: '清空会话'}">
+              <i class="mdui-icon material-icons">delete</i></button>
             <div class="mdui-textfield mdui-col-xs-12">
               <label class="mdui-textfield-label">在此提问……</label>
               <textarea class="mdui-textfield-input" id="chatInput"></textarea>

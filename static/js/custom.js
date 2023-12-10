@@ -45,7 +45,7 @@ $(document).ready(function () {
     let escapedMessage = escapeHtml(message);  // 对请求message进行转义，防止输入的是html而被浏览器渲染
     let requestMessageElement = $('<div class="message-bubble"><div class="message-text request mdui-shadow-5 mdui-color-theme"><p>神徒问曰：</p><p>' + escapedMessage + '</p></div></div>');
     chatWindow.append(requestMessageElement);
-    let responseMessageElement = $('<div class="message-bubble"><div class="message-text response mdui-shadow-5"><span class="loading-icon"><i class="fa fa-spinner fa-pulse fa-2x"></i></span></div></div>');
+    let responseMessageElement = $('<div class="message-bubble"><div class="message-text response mdui-shadow-5"><span class="loading-icon"><i class="mdui-icon material-icons">sync</i></span></div></div>');
     chatWindow.append(responseMessageElement);
     chatWindow.scrollTop(chatWindow.prop('scrollHeight'));
   }
@@ -237,11 +237,11 @@ $(document).ready(function () {
   // apiKey
   const apiKey = localStorage.getItem('apiKey');
   if (apiKey) {
-    $(".settings-common .api-key").val(apiKey);
+    $(".api-key").val(apiKey);
   }
 
   // apiKey输入框事件
-  $(".settings-common .api-key").blur(function () {
+  $(".api-key").blur(function () {
     const apiKey = $(this).val();
     if (apiKey.length != 0) {
       localStorage.setItem('apiKey', apiKey);
@@ -409,7 +409,7 @@ $(document).ready(function () {
     e.preventDefault();  // 阻止默认事件
   });
 
-  // 定义一个函数，根据用户设备的亮暗模式偏好，选择不同的css文件
+  // 根据用户设备的亮暗模式，加载对应css
   function switchCSS() {
     let prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     let cssFile = prefersDarkMode ? 'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/dark.min.css' : 'https://cdn.bootcdn.net/ajax/libs/highlight.js/11.8.0/styles/default.min.css';
