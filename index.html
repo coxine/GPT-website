@@ -10,17 +10,15 @@
   <link rel="stylesheet" href="./static/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="./static/css/style.css">
   <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
-  <title>ChatGPT-website</title>
+  <title>神曰</title>
 </head>
 
-<body class="mdui-theme-layout-auto mdui-theme-primary-teal mdui-theme-accent-teal">
-  <div class="mdui-container container">
-
+<body class="mdui-theme-layout-auto mdui-theme-primary-purple mdui-theme-accent-purple">
+  <div class=" mdui-container container">
     <div class="row">
-
       <!--顶栏-->
       <div class="mdui-toolbar">
-        <span class="mdui-typo-title">ChatGPT-website</span>
+        <span class="mdui-typo-title">神曰</span>
         <div class="mdui-toolbar-spacer"></div>
         <button class="mdui-btn mdui-btn-icon dropdown-toggle" mdui-tooltip="{content: '设置'}">
           <i class="mdui-icon material-icons">settings</i></button>
@@ -81,16 +79,16 @@
           </div>
           <div class="ipt">
             <div class="mdui-textfield mdui-col-xs-12">
-              <textarea class="mdui-textfield-input form-control" rows="2" id="chatInput"
-                placeholder="请输入问题……"></textarea>
+              <label class="mdui-textfield-label">在此提问……</label>
+              <textarea class="mdui-textfield-input" id="chatInput"></textarea>
             </div>
-            <button id="chatBtn" class="mdui-btn mdui-ripple">提问！</button>
+            <button id="chatBtn" class="mdui-btn mdui-ripple mdui-color-theme">提问</button>
           </div>
         </div>
       </div>
-      <div class="mdui-divider mdui-m-t-3"></div>
-      <footer class="mdui-m-t-1" style="text-align: center; width: 100%;">
-        <p class="mdui-typo-body-1 mdui-typo">是个页脚</p>
+      <footer class="mdui-m-t-1">
+        <p class="mdui-typo-body-1 mdui-typo"> 考神保佑，走向辉煌！---神曰--- 来自遥远的考神天国<br /><i>“似情话 似梦话 欲说还休还未发话 笑得半真半假”</i>
+        </p>
       </footer>
     </div>
   </div>

@@ -1,35 +1,3 @@
-:root[bg-theme='light'] {
-  --bg-color: white;
-}
-
-:root[bg-theme='gray'] {
-  --bg-color: #42424670;
-}
-
-:root[bg-theme='light-red'] {
-  --bg-color: #eda8a8;
-}
-
-:root[bg-theme='light-blue'] {
-  --bg-color: #55609a;
-}
-
-:root[bg-theme='light-purple'] {
-  --bg-color: #c09ff9;
-}
-
-:root[bg-theme='light-green'] {
-  --bg-color: #91ecd1;
-}
-
-:root[bg-theme='light-yellow'] {
-  --bg-color: #e9e097;
-}
-
-body {
-  background-color: var(--bg-color);
-}
-
 @media screen and (max-width: 768px) {
   .container {
     width: 100% !important;
@@ -44,21 +12,6 @@ body {
   }
 }
 
-@media screen and (min-width: 768px) {
-  #chatWindow::-webkit-scrollbar {
-    width: 3px;
-  }
-
-  #chatWindow::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-  }
-
-  #chatWindow::-webkit-scrollbar-thumb {
-    background-color: #888;
-    border-radius: 4px;
-  }
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -70,15 +23,8 @@ body {
   width: 100%;
 }
 
-.form-control {
-  border-color: #1ab394 !important;
-  padding: 6px 6px !important;
-}
-
 pre {
   position: relative;
-  color: #adbac7;
-  background: #2b2a2a;
 }
 
 .copy-btn {
@@ -105,7 +51,7 @@ pre {
 .answer {
   width: 100%;
   position: relative;
-  height: calc(100vh - 165px);
+  height: calc(100vh - 9em);
 }
 
 .answer .tips {
@@ -244,7 +190,6 @@ input[type="checkbox"]:checked+.check-trail .check-handler::before {
 .answer .others .icon-style {
   width: 30px;
   height: 30px;
-  line-height: 30px;
   text-align: center;
   color: #1ab394;
   cursor: pointer;
@@ -260,18 +205,6 @@ input[type="checkbox"]:checked+.check-trail .check-handler::before {
 
 }
 
-.answer .ipt textarea {
-  resize: none;
-  overflow-y: auto;
-  border: none;
-  box-shadow: none;
-}
-
-.answer .ipt textarea:focus {
-  border: none !important;
-  box-shadow: none !important;
-}
-
 .answer #chatWindow {
   width: 100%;
   max-height: calc(100% - 100px);
@@ -280,19 +213,22 @@ input[type="checkbox"]:checked+.check-trail .check-handler::before {
 }
 
 .message-bubble {
-  padding: 5px;
-  margin: 10px;
+  min-height: 3em;
+  border-radius: 1em;
   display: flex;
-  align-items: flex-start;
-  border-bottom: 1px dashed #e7eaec;
+  margin: 1.5em;
+  padding: 1em;
+  position: relative;
 }
 
 .message-bubble .message-text {
+  border-radius: 1em;
   width: auto;
-  max-width: calc(100% - 45px);
-  margin-left: 15px;
   word-break: break-all;
+  max-width: 60%;
+  padding: 1em;
 }
+
 
 .message-bubble .message-text p {
   white-space: pre-wrap;
@@ -312,49 +248,15 @@ ul {
   word-break: break-all;
 }
 
-.message-bubble .chat-icon {
-  width: 30px;
-  height: 30px;
-  border-radius: 3px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-
-.message-bubble .request-icon {
-  background-image: url(../images/avatar.png);
-}
-
-.message-bubble .response-icon {
-  background-image: url(../images/chatgpt.png);
+.message-bubble .request {
+  margin-left: auto;
 }
 
 .message-bubble .response .loading-icon {
   color: #1ab394;
 }
 
-.answer #chatBtn {
-  background-color: #1ab394;
-  border-color: #1ab394;
-}
-
-.answer #chatBtn:focus {
-  outline: 5px auto #1ab394 !important;
-}
-
-.foot p:first-child {
-  margin-bottom: 10px;
-  opacity: .9;
-}
-
-.foot p:nth-child(2) {
-  margin-bottom: 0;
-}
-
-.foot p a {
-  margin-right: 10px;
-  font-weight: 400;
-  font-size: 14px;
-  color: #1ab394;
-  text-decoration: none;
+footer {
+  text-align: center;
+  width: 100%;
 }
