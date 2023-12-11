@@ -18,73 +18,75 @@
       <div class="mdui-toolbar">
         <span class="mdui-typo-title">神曰</span>
         <div class="mdui-toolbar-spacer"></div>
+        <button class="mdui-btn mdui-btn-icon dropdown-toggle" mdui-dialog="{target: '#settingDialog'}"
+          mdui-tooltip="{content: '设置'}">
+          <i class="mdui-icon material-icons">settings</i></button>
         <a href="https://costg.de" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '瑞治网'}"><i
             class="mdui-icon material-icons">home</i></a>
         <a href="https://res.costg.de" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '瑞治下载站'}""><i class="
           mdui-icon material-icons">file_download</i></a>
       </div>
 
-      <div class="mdui-col-xs-12"></div>
+      <div class="mdui-dialog" id="settingDialog">
+        <div class="mdui-dialog-title">设置</div>
+        <div class="mdui-dialog-content">
+          <div onclick="event.stopPropagation()">
+            <div class="setting mdui-m-t-1 input-box">
+              <span><i class="mdui-icon material-icons">vpn_key</i>&nbsp; OpenAI API Key</span>
+              <div class="mdui-textfield">
+                <input class="mdui-textfield-input api-key" />
+              </div>
+            </div>
+            <div class="setting mdui-m-t-1 select">
+              <span><i class="mdui-icon material-icons">child_care</i>&nbsp; 模型版本选择</span>
+              <select class="mdui-select model" mdui-select>
+                <option value="gpt-3.5-turbo"> gpt-3.5-turbo</option>
+                <option value="gpt-4">gpt-4</option>
+              </select>
+            </div>
+            <div class="setting mdui-m-t-1 switch">
+              <span><i class="mdui-icon material-icons">save</i>&nbsp; 记录对话历史</span>
+              <label for="chck-1" class="mdui-switch">
+                <input type="checkbox" id="chck-1" />
+                <i class="mdui-switch-icon"></i>
+              </label>
+            </div>
+            <div class="setting mdui-m-t-1 switch">
+              <span><i class="mdui-icon material-icons">history</i>&nbsp; 连续对话 <b
+                  style="color: red;">警告：会消耗更多tokens</b></span>
+              <label for="chck-2" class="mdui-switch">
+                <input type="checkbox" id="chck-2" />
+                <i class="mdui-switch-icon"></i>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="mdui-dialog-actions">
+          <button class="mdui-btn mdui-ripple" mdui-dialog-confirm>确认</button>
+        </div>
+      </div>
 
       <div class="answer">
         <div id="chatWindow"></div>
-        <div class="function">
-          <div class="mdui-dialog" id="settingDialog">
-            <div class="mdui-dialog-title">设置</div>
-            <div class="mdui-dialog-content">
-              <div onclick="event.stopPropagation()">
-                <div class="setting mdui-m-t-1">
-                  <span><i class="mdui-icon material-icons">vpn_key</i>&nbsp; OpenAI Key</span>
-                  <div class="mdui-textfield mdui-textfield-floating-label">
-                    <label class="mdui-textfield-label">请输入API key</label>
-                    <input class="mdui-textfield-input api-key" />
-                  </div>
-                </div>
-                <div class=" setting mdui-m-t-1">
-                  <span><i class="mdui-icon material-icons">child_care</i>&nbsp; OpenAI 模型</span>
-                  <select class="mdui-select" mdui-select>
-                    <option>gpt-3.5-turbo</option>
-                  </select>
-                </div>
-                <div class="setting mdui-m-t-1">
-                  <span><i class="mdui-icon material-icons">save</i>&nbsp; 记录对话内容，刷新不会消失</span>
-                  <label for="chck-1" class="mdui-switch">
-                    <input type="checkbox" id="chck-1" />
-                    <i class="mdui-switch-icon"></i>
-                  </label>
-
-                </div>
-                <div class="setting mdui-m-t-1">
-                  <span><i class="mdui-icon material-icons">history</i>&nbsp; 开启连续对话，加倍消耗tokens</span>
-                  <label for="chck-2" class="mdui-switch">
-                    <input type="checkbox" id="chck-2" />
-                    <i class="mdui-switch-icon"></i>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="mdui-dialog-actions">
-              <button class="mdui-btn mdui-ripple" mdui-dialog-confirm>确认</button>
-            </div>
+        <div class="ipt">
+          <button class="mdui-btn mdui-btn-icon screenshot" mdui-tooltip="{content: '导出图片'}">
+            <i class="mdui-icon material-icons">photo_camera</i></button>
+          <button class="mdui-btn mdui-btn-icon delete" mdui-tooltip="{content: '清空对话记录'}">
+            <i class="mdui-icon material-icons">delete</i></button>
+          <button class="mdui-btn mdui-btn-icon stop" mdui-tooltip="{content: '中断此轮对话'}">
+            <i class="mdui-icon material-icons">speaker_notes_off</i></button>
+          <div class="mdui-textfield mdui-col-xs-12">
+            <label class="mdui-textfield-label">在此提问……</label>
+            <textarea class="mdui-textfield-input" rows="2" id="chatInput"></textarea>
           </div>
-          <div class="ipt">
-            <button class="mdui-btn mdui-btn-icon dropdown-toggle" mdui-dialog="{target: '#settingDialog'}"
-              mdui-tooltip="{content: '设置'}">
-              <i class="mdui-icon material-icons">settings</i></button>
-            <button class="mdui-btn mdui-btn-icon screenshot" mdui-tooltip="{content: '另存为图片'}">
-              <i class="mdui-icon material-icons">photo_camera</i></button>
-            <button class="mdui-btn mdui-btn-icon delete" mdui-tooltip="{content: '清空会话'}">
-              <i class="mdui-icon material-icons">delete</i></button>
-            <div class="mdui-textfield mdui-col-xs-12">
-              <label class="mdui-textfield-label">在此提问……</label>
-              <textarea class="mdui-textfield-input" id="chatInput"></textarea>
-            </div>
-            <button id="chatBtn" class="mdui-btn mdui-ripple mdui-color-theme">提问</button>
-          </div>
+          <button id="chatBtn" class="mdui-btn mdui-btn-icon mdui-ripple mdui-color-theme"><i
+              class="mdui-icon material-icons">done</i></button>
         </div>
       </div>
+
       <footer class="mdui-m-t-1">
         <p class="mdui-typo-body-1 mdui-typo"> 考神保佑，走向辉煌！---神曰--- 来自遥远的考神天国<br /><i>“似情话 似梦话 欲说还休还未发话 笑得半真半假”</i>
+          感谢 <a href="https://github.com/Aniuyyds/ChatGPT-website">Aniuyyds/ChatGPT-website</a>
         </p>
       </footer>
     </div>

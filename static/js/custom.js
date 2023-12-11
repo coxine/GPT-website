@@ -1,14 +1,14 @@
 // 功能
 $(document).ready(function () {
-  var chatBtn = $('#chatBtn');
-  var chatInput = $('#chatInput');
-  var chatWindow = $('#chatWindow');
+  let chatBtn = $('#chatBtn');
+  let chatInput = $('#chatInput');
+  let chatWindow = $('#chatWindow');
 
-  // 存储对话信息,实现连续对话
-  var messages = [];
+  // 全局变量,存储对话信息
+  let messages = [];
 
   // 检查返回的信息是否是正确信息
-  var resFlag = true
+  let resFlag = true
 
   // 创建自定义渲染器
   const renderer = new marked.Renderer();
@@ -28,7 +28,6 @@ $(document).ready(function () {
       return hljs.highlight(code, { language: validLanguage }).value;
     }
   });
-
 
   // 转义html代码(对应字符转移为html实体)，防止在浏览器渲染
   function escapeHtml(html) {
@@ -90,7 +89,6 @@ $(document).ready(function () {
 
 
   // 发送请求获得响应
-  // todo: +4.0API
   async function sendRequest(data) {
     const response = await fetch(config.url, {
       method: 'POST',
@@ -100,7 +98,7 @@ $(document).ready(function () {
       },
       body: JSON.stringify({
         "messages": data.prompts,
-        "model": "gpt-3.5-turbo",
+        "model": $(".model").val(),
         "max_tokens": 1025,
         "temperature": 0.5,
         "top_p": 1,
@@ -156,16 +154,18 @@ $(document).ready(function () {
       data = { "apiKey": "" };
     }
 
+    // 判断是否使用自己的api key
     let apiKey = localStorage.getItem('apiKey');
     if (apiKey) {
       data.apiKey = apiKey;
     }
 
+    // 接收输入信息变量
     let message = chatInput.val();
     if (message.length == 0) {
       // 重新绑定键盘事件
       chatInput.on("keydown", handleEnter);
-      return
+      return;
     }
 
     addRequestMessage(message);
@@ -183,14 +183,13 @@ $(document).ready(function () {
     }
 
     // 判读是否已开启连续对话
+    data.prompts = messages.slice();  // 拷贝一份全局messages赋值给data.prompts,然后对data.prompts处理
     if (localStorage.getItem('continuousDialogue') == 'true') {
       // 控制上下文，对话长度超过4轮，取最新的3轮,即数组最后7条数据
-      data.prompts = messages.slice();  // 拷贝一份全局messages赋值给data.prompts,然后对data.prompts处理
       if (data.prompts.length > 8) {
         data.prompts.splice(0, data.prompts.length - 7);
       }
     } else {
-      data.prompts = messages.slice();
       data.prompts.splice(0, data.prompts.length - 1); // 未开启连续对话，取最后一条
     }
 
@@ -208,10 +207,18 @@ $(document).ready(function () {
           localStorage.setItem("session", JSON.stringify(messages));
         }
       }
+
       // 添加复制
       copy();
     });
   });
+
+  // 停止输出
+  $('.stop').click(function () {
+    if (ajaxRequest) {
+      ajaxRequest.abort();
+    }
+  })
 
   // Enter键盘事件
   function handleEnter(e) {
@@ -223,16 +230,6 @@ $(document).ready(function () {
 
   // 绑定Enter键盘事件
   chatInput.on("keydown", handleEnter);
-
-
-  // 设置栏宽度自适应
-  let width = $('.function .others').width();
-  $('.function .settings .dropdown-menu').css('width', width);
-
-  $(window).resize(function () {
-    width = $('.function .others').width();
-    $('.function .settings .dropdown-menu').css('width', width);
-  });
 
   // apiKey
   const apiKey = localStorage.getItem('apiKey');
@@ -251,7 +248,7 @@ $(document).ready(function () {
   })
 
   // 是否保存历史对话
-  var archiveSession = localStorage.getItem('archiveSession');
+  let archiveSession = localStorage.getItem('archiveSession');
 
   // 初始化archiveSession
   if (archiveSession == null) {
@@ -297,7 +294,7 @@ $(document).ready(function () {
   }
 
   // 是否连续对话
-  var continuousDialogue = localStorage.getItem('continuousDialogue');
+  let continuousDialogue = localStorage.getItem('continuousDialogue');
 
   // 初始化continuousDialogue
   if (continuousDialogue == null) {

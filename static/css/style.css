@@ -74,12 +74,6 @@ pre {
   width: 200px;
 }
 
-.answer .function {
-  width: 100%;
-  position: absolute;
-  bottom: 0px;
-}
-
 .answer .others {
   display: flex;
   justify-content: space-between;
@@ -133,9 +127,15 @@ pre {
   text-decoration: none;
 }
 
-.setting {
+
+.select,
+.setting.switch {
   display: flex;
   justify-content: space-between;
+}
+
+.setting.key-input {
+  display: flex;
 }
 
 .answer .others .right .screenshot {
