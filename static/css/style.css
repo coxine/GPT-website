@@ -71,9 +71,16 @@ pre {
   display: flex;
 }
 
+.answer {
+  position: relative;
+}
+
 .answer .ipt {
   display: flex;
   align-items: center;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 
 }
 
