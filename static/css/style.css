@@ -1,10 +1,23 @@
 @media screen and (max-width: 768px) {
-  .container {
+  .mdui-container {
     width: 100% !important;
   }
 
   .answer {
-    height: calc(100vh - 145px) !important;
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+  .mdui-container {
+    width: 100% !important;
+  }
+
+  .answer {
+    width: 100%;
+    height: calc(100vh - 9em);
   }
 }
 
@@ -35,11 +48,10 @@ pre {
   cursor: pointer;
 }
 
-.answer {
+/* .answer {
   width: 100%;
-  position: relative;
   height: calc(100vh - 9em);
-}
+} */
 
 .answer .tips {
   width: 100%;
@@ -61,6 +73,7 @@ pre {
   width: 200px;
 }
 
+/* 设置 */
 .select,
 .setting.switch {
   display: flex;
@@ -71,41 +84,31 @@ pre {
   display: flex;
 }
 
-.answer {
-  position: relative;
-}
-
-.answer .ipt {
+/* 问题输入框 */
+.ipt {
   display: flex;
   align-items: center;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-
 }
 
 .answer #chatWindow {
   width: 100%;
-  max-height: calc(100% - 100px);
-  height: auto;
+  height: calc(100vh - 12em);
   overflow-y: auto;
 }
 
+/* 消息气泡 */
 .message-bubble {
-  min-height: 3em;
-  border-radius: 1em;
   display: flex;
   margin: 1.5em;
-  padding: 1em;
   position: relative;
 }
 
 .message-bubble .message-text {
-  border-radius: 1em;
+  border-radius: 0.8em;
   width: auto;
   word-break: break-all;
   max-width: 80%;
-  padding: 1em;
+  padding: 0.5em 1em;
 }
 
 
@@ -131,7 +134,7 @@ ul {
   margin-left: auto;
 }
 
-footer {
+#info p {
   text-align: center;
   width: 100%;
 }
