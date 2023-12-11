@@ -6,10 +6,6 @@
   .answer {
     height: calc(100vh - 145px) !important;
   }
-
-  .answer .others .common .settings-common span {
-    font-size: 85%;
-  }
 }
 
 * {
@@ -39,15 +35,6 @@ pre {
   cursor: pointer;
 }
 
-.title {
-  width: 100%;
-}
-
-.title h2 {
-  margin-bottom: 20px;
-  color: #4aa593;
-}
-
 .answer {
   width: 100%;
   position: relative;
@@ -74,60 +61,6 @@ pre {
   width: 200px;
 }
 
-.answer .others {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 30px;
-  margin-bottom: 10px;
-}
-
-.answer .others .left,
-.right {
-  display: flex;
-}
-
-.answer .others .common {
-  width: 30px;
-  height: 30px;
-  display: flex;
-}
-
-.answer .others .common .settings-common {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-}
-
-.answer .others .common .settings-common:hover {
-  background-color: rgba(148, 163, 184, .2);
-}
-
-.answer .others .common .settings-common:last-child {
-  border-bottom: 0;
-}
-
-.answer .others .common .settings-common .ipt-common {
-  width: 60%;
-  opacity: .8;
-}
-
-.answer .others .common .settings-common span {
-  color: #1ab394;
-  cursor: default;
-}
-
-.answer .others .common .settings-common a {
-  font-size: 14px;
-  color: #1ab394;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-
 .select,
 .setting.switch {
   display: flex;
@@ -136,22 +69,6 @@ pre {
 
 .setting.key-input {
   display: flex;
-}
-
-.answer .others .right .screenshot {
-  margin-right: 10px;
-}
-
-.answer .others .icon-style {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  color: #1ab394;
-  cursor: pointer;
-}
-
-.answer .others .icon-style:hover {
-  background-color: rgba(26, 179, 148, .1);
 }
 
 .answer .ipt {
@@ -205,10 +122,6 @@ ul {
 
 .message-bubble .request {
   margin-left: auto;
-}
-
-.message-bubble .response .loading-icon {
-  color: #1ab394;
 }
 
 footer {
